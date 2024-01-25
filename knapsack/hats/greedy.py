@@ -35,12 +35,38 @@ def high_value_first(item_count, capacity, items):
     weight = 0
 
     input_df = pd.DataFrame(items).set_index("index")
-
-    print(capacity, input_df)
+    print(input_df)
+    print(capacity)
 
     input_df["taken"] = 0
 
-    input_df = input_df.sort_values(by="weight", ascending=False)
+    input_df = input_df.sort_values(by="value", ascending=False)
+
+    for idx, r in input_df.iterrows():
+        if weight + r.weight <= capacity:
+            input_df.loc[idx, "taken"] = 1
+            weight += r.weight
+            value += r.value
+
+    input_df.sort_index(inplace=True)
+    taken = input_df["taken"].astype(int).to_list()
+
+    return int(value), int(weight), taken
+
+
+def low_weight_first(item_count, capacity, items):
+    """ """
+
+    value = 0
+    weight = 0
+
+    input_df = pd.DataFrame(items).set_index("index")
+    print(input_df)
+    print(capacity)
+
+    input_df["taken"] = 0
+
+    input_df = input_df.sort_values(by="weight")
 
     for idx, r in input_df.iterrows():
         if weight + r.weight <= capacity:

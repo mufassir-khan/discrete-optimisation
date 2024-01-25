@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import namedtuple
-from hats.greedy import high_density_first, high_value_first
+from hats.greedy import high_density_first, high_value_first, low_weight_first
 
 Item = namedtuple("Item", ["index", "value", "weight"])
 
@@ -28,8 +28,8 @@ def solve_it(input_data):
     # a trivial algorithm for filling the knapsack
     # it takes items in-order until the knapsack is full
 
-    if item_count < 10:
-        value, weight, taken = high_value_first(item_count, capacity, items)
+    if item_count <= 30:
+        value, weight, taken = low_weight_first(item_count, capacity, items)
     else:
         value, weight, taken = high_density_first(item_count, capacity, items)
 
