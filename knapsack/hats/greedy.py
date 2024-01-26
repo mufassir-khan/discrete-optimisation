@@ -9,7 +9,7 @@ def high_density_first(item_count, capacity, items):
 
     input_df = pd.DataFrame(items).set_index("index")
 
-    print(capacity, input_df)
+    print(item_count)
 
     input_df["taken"] = 0
 
@@ -34,9 +34,8 @@ def high_value_first(item_count, capacity, items):
     value = 0
     weight = 0
 
+    print(item_count)
     input_df = pd.DataFrame(items).set_index("index")
-    print(input_df)
-    print(capacity)
 
     input_df["taken"] = 0
 
@@ -61,8 +60,6 @@ def low_weight_first(item_count, capacity, items):
     weight = 0
 
     input_df = pd.DataFrame(items).set_index("index")
-    print(input_df)
-    print(capacity)
 
     input_df["taken"] = 0
 
